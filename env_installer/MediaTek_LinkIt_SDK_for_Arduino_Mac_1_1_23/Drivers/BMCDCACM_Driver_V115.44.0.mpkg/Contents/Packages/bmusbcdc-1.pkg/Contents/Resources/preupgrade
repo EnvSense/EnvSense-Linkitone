@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo rm -rf /System/Library/Extensions/BMUSBCDC.kext
+sudo touch /System/Library/Extensions/
+sudo sync

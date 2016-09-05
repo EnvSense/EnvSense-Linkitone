@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo touch /system/library/extensions/
+sudo killall -HUP kextd
+sudo sync

@@ -1,0 +1,33 @@
+10:36:38.339968 == Info:   Trying 140.114.71.114...
+10:36:38.373134 == Info: Connected to mashroom-experiments.tk (140.114.71.114) port 80 (#0)
+10:36:38.373477 => Send header, 157 bytes (0x9d)
+0000: POST / HTTP/1.1
+0011: Host: mashroom-experiments.tk
+0030: User-Agent: curl/7.43.0
+0049: Accept: */*
+0056: Content-Length: 57
+006a: Content-Type: application/x-www-form-urlencoded
+009b: 
+10:36:38.373572 => Send data, 57 bytes (0x39)
+0000: light=123&air_mois=123&air_temp=123&soilMois=123&box_id=1
+10:36:38.373598 == Info: upload completely sent off: 57 out of 57 bytes
+10:36:38.420443 <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+10:36:38.420506 <= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 28 Aug 2016 02:36:46 GMT
+10:36:38.420528 <= Recv header, 31 bytes (0x1f)
+0000: Server: Apache/2.4.7 (Ubuntu)
+10:36:38.420544 <= Recv header, 37 bytes (0x25)
+0000: X-Powered-By: PHP/5.5.9-1ubuntu4.17
+10:36:38.420605 <= Recv header, 23 bytes (0x17)
+0000: Vary: Accept-Encoding
+10:36:38.420628 <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 101
+10:36:38.420645 <= Recv header, 25 bytes (0x19)
+0000: Content-Type: text/html
+10:36:38.420663 <= Recv header, 2 bytes (0x2)
+0000: 
+10:36:38.420844 <= Recv data, 101 bytes (0x65)
+0000: object(PDO)#1 (0) {.}.success.array(3) {.  [0]=>.  string(5) "00
+0040: 000".  [1]=>.  NULL.  [2]=>.  NULL.}.
+10:36:38.420995 == Info: Connection #0 to host mashroom-experiments.tk left intact

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-script minSpecVersion="1.000000" authoringTool="com.apple.PackageMaker" authoringToolVersion="3.0.6" authoringToolBuild="201">
+    <title>USB CDC/ACM Driver</title>
+    <options customize="never" allow-external-scripts="no" rootVolumeOnly="true"/>
+    <script>
+function pm_choice0_selected() {
+  result = true;
+  result = result &amp;&amp; (my.target.systemVersion &amp;&amp; /* &lt;= */ system.compareVersions(my.target.systemVersion.ProductVersion, '10.8.5') &lt;= 0);
+  return result;
+}
+
+
+function pm_choice0_enabled() {
+  result = true;
+  result = result &amp;&amp; (my.target.systemVersion &amp;&amp; /* &lt;= */ system.compareVersions(my.target.systemVersion.ProductVersion, '10.8.5') &lt;= 0);
+  return result;
+}
+
+
+function pm_choice1_selected() {
+  result = true;
+  result = result &amp;&amp; (my.target.systemVersion &amp;&amp; /* &gt;= */ system.compareVersions(my.target.systemVersion.ProductVersion, '10.9.0') &gt;= 0);
+  return result;
+}
+
+
+function pm_choice1_enabled() {
+  result = true;
+  result = result &amp;&amp; (my.target.systemVersion &amp;&amp; /* &gt;= */ system.compareVersions(my.target.systemVersion.ProductVersion, '10.9.0') &gt;= 0);
+  return result;
+}</script>
+    <readme file="ReadMe"/>
+    <choices-outline>
+        <line choice="choice0"/>
+        <line choice="choice1"/>
+    </choices-outline>
+    <choice id="choice0" title="Unsigned_10.6_10.8" selected="pm_choice0_selected()" enabled="pm_choice0_enabled()">
+        <pkg-ref id="com.MediaTek.usbCdcacmDriver.BMUSBCDC.pkg"/>
+    </choice>
+    <choice id="choice1" title="signed_10.9_10.11" selected="pm_choice1_selected()" enabled="pm_choice1_enabled()">
+        <pkg-ref id="com.MediaTek.usbCdcacmDriver.BMUSBCDC-1.pkg"/>
+    </choice>
+    <pkg-ref id="com.MediaTek.usbCdcacmDriver.BMUSBCDC.pkg" installKBytes="328" version="1.0" auth="Root">file:./Contents/Packages/bmusbcdc.pkg</pkg-ref>
+    <pkg-ref id="com.MediaTek.usbCdcacmDriver.BMUSBCDC-1.pkg" installKBytes="212" version="1.0" auth="Root">file:./Contents/Packages/bmusbcdc-1.pkg</pkg-ref>
+</installer-script>

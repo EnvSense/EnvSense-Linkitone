@@ -1,0 +1,39 @@
+07:43:42.942309 == Info:   Trying 140.114.71.114...
+07:43:42.972678 == Info: Connected to mashroom-experiments.tk (140.114.71.114) port 80 (#0)
+07:43:42.973033 => Send header, 166 bytes (0xa6)
+0000: POST /query.php HTTP/1.1
+001a: Host: mashroom-experiments.tk
+0039: User-Agent: curl/7.43.0
+0052: Accept: */*
+005f: Content-Length: 46
+0073: Content-Type: application/x-www-form-urlencoded
+00a4: 
+07:43:42.973129 => Send data, 46 bytes (0x2e)
+0000: token=eccb9fabb8cb3e8c7b8a92a8cc3199163de5d0d9
+07:43:42.973153 == Info: upload completely sent off: 46 out of 46 bytes
+07:43:42.996312 <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+07:43:42.996363 <= Recv header, 37 bytes (0x25)
+0000: Date: Sat, 27 Aug 2016 23:43:50 GMT
+07:43:42.996390 <= Recv header, 31 bytes (0x1f)
+0000: Server: Apache/2.4.7 (Ubuntu)
+07:43:42.996406 <= Recv header, 37 bytes (0x25)
+0000: X-Powered-By: PHP/5.5.9-1ubuntu4.17
+07:43:42.996421 <= Recv header, 61 bytes (0x3d)
+0000: Access-Control-Allow-Origin: http://mashroom-experiments.tk
+07:43:42.996441 <= Recv header, 40 bytes (0x28)
+0000: access-control-allow-credentials: true
+07:43:42.996457 <= Recv header, 78 bytes (0x4e)
+0000: access-control-allow-headers: Origin, X-Requested-With, Content-
+0040: Type, Accept
+07:43:42.996480 <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 136
+07:43:42.996494 <= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+07:43:42.996510 <= Recv header, 2 bytes (0x2)
+0000: 
+07:43:42.996520 <= Recv data, 136 bytes (0x88)
+0000: {"id":"52","air_temperature":"44","air_humidity":"29","soil_humi
+0040: dity":"881","light":"354","box_id":"1","datatime":"2016-08-27 23
+0080: :01:57"}
+07:43:42.996598 == Info: Connection #0 to host mashroom-experiments.tk left intact
