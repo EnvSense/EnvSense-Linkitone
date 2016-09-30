@@ -6,8 +6,8 @@
 
 // Deployment Info
 
-#define WIFI_AP "ASUS-LINK_FOR_HOME_64"
-#define WIFI_PASSWORD "only4ourhome"
+#define WIFI_AP "LOGOSLAB-slowbro"
+#define WIFI_PASSWORD "logoslab"
 #define WIFI_AUTH LWIFI_WPA  // choose from LWIFI_OPEN, LWIFI_WPA, or LWIFI_WEP.
 #define SITE_URL "mashroom-experiments.tk"
 
@@ -21,11 +21,10 @@ LWiFiClient c;
 uint32_t analogPinSM = A0; // Read soil moisture sensor value
 
 // DHT11 Air Temperature and Humidity
-# define DHT_TYPE DHT11 
+# define DHT_TYPE DHT11
 
 // Used Pin List
-uint8_t digitalPin = 8; 
-
+uint8_t digitalPin = 8;
 LDHT dht( digitalPin, DHT_TYPE );
 
 // Light sensor
@@ -36,7 +35,7 @@ int smRead(int pin);
 int lightRead(int pin);
 float airRead( LDHT dht, int type );
 float previousMois = 0.0; // Buffer prevous value to validate integrity
-float previousTemp = 0.0; // 
+float previousTemp = 0.0; //
 
 /* End of Sensor Function & Setup */
 
@@ -44,7 +43,7 @@ float previousTemp = 0.0; //
 /* Internet Function Declaration */
 //
 
-// Wifi-base 
+// Wifi-base
 void initWifi();
 void printResponse();
 void sendData();
@@ -61,7 +60,7 @@ void setup()
   /* Sensor Initialization */
   /* Air Temp & Moisture*/
   dht.begin();
-  
+
 }
 
 
@@ -70,13 +69,13 @@ void loop()
 //  smRead( analogPinSM );
 //  lightRead( analogPinLight );
 //  airRead( dht, 0 );
-//  delay(2000); 
-//  airRead( dht, 1 ); 
-//  delay(2000); 
-  
+//  delay(2000);
+//  airRead( dht, 1 );
+//  delay(2000);
+
   sendData();
   printRespone();
-  
+
   if (!disconnectedMsg)
   {
     Serial.println("disconnected by server");
@@ -89,7 +88,7 @@ void intiGPRS(){
     {
       delay(500);
     }
-  
+
     // if you get a connection, report back via serial:
     Serial.print("Connect to ");
     Serial.println(server);
@@ -112,18 +111,18 @@ void intiGPRS(){
     }
 }
 void initWifi()
-{  
+{
     int APTryCnt = 60;  // 1 mins
     int ServerTryCnt = 60; // 1 mins
-    LWiFi.begin(); 
-    
+    LWiFi.begin();
+
     //  keep retrying until connected to AP
     Serial.println("Connecting to AP");
     while (0 == LWiFi.connect(WIFI_AP, LWiFiLoginInfo(WIFI_AUTH, WIFI_PASSWORD)))
     {
       delay(1000);
     }
-  
+
     // keep retrying until connected to website
     Serial.println("Connecting to Server");
     while (0 == c.connect(SITE_URL, 80))
@@ -131,14 +130,14 @@ void initWifi()
       Serial.println("Re-Connecting to WebSite");
       delay(1000);
     }
-  
+
 //    // send HTTP request, ends with 2 CR/LF
 //    Serial.println("send HTTP GET request");
 //    c.println("POST / HTTP/1.1");
 //    c.println("Host: " SITE_URL);
 //    c.println("Connection: close");
 //    c.println();
-//  
+//
 //    // waiting for server response
 //    Serial.println("waiting HTTP response:");
 //    while (!c.available())
@@ -149,10 +148,10 @@ void initWifi()
 void sendData(){
 //      String payload = "[{\"variable\":\"" VARID1 "\",\"value\":"+ String(analogRead(A0)) + "},{\"variable\":\"" VARID2 "\",\"value\":" + String(analogRead(A1)) + "},{\"variable\":\"" VARID3 "\",\"value\":" + String(analogRead(A2)) + "}]";
       delay( 2000 );
-      float temp = airRead( dht, 0 );      
+      float temp = airRead( dht, 0 );
       delay( 2000 );
       float mois = airRead( dht, 1 );
-      
+
       String payload = "soilMois="+String( smRead( analogPinSM ) )+"&light="+String( lightRead( analogPinLight ) ) +"&air_mois="+String( mois )+"&air_temp="+String( temp )+"&box_id=1";
       String le = String(payload.length());
 
@@ -161,7 +160,7 @@ void sendData(){
           delay( 100 );
         }
         Serial.println("Client reconnected!");
-      } 
+      }
 
       // Build HTTP POST request
 
@@ -171,11 +170,11 @@ void sendData(){
       c.println(le);
       c.print( "Host: " );
       c.println( SITE_URL );
-      c.println(); 
-      c.println( payload );  
+      c.println();
+      c.println( payload );
 
       int v;
-      while(c.available()){  
+      while(c.available()){
         v = c.read();
         if(v < 0){
           Serial.println("No response.");
@@ -206,16 +205,16 @@ void printRespone(){
   }
 }
 int smRead( int pin ){ // Pass testing
-  
+
   uint32_t soilMois = 0;
   // Print Header
   Serial.println("--------------");
-  
+
   // Soil Moisture
   soilMois = analogRead( pin );
   Serial.print( "Soil Moisture: " );
   Serial.println( soilMois );
-  
+
   delay ( 1000 );
   return soilMois;
 }
@@ -225,28 +224,28 @@ int lightRead( int pin ){ // Pass testing
   light =  analogRead( analogPinLight );;
   Serial.print( "Light: " );
   Serial.println( light );
-  
+
   delay ( 1000 );
   return light;
 }
 
-boolean airReadFirstTime = true; 
+boolean airReadFirstTime = true;
 float airRead( LDHT dht, int type ) // Pass testing
 {
-  
+
   float rst = 0.0;
 //  int airReadErrorCnt = 0;
-  
+
   Serial.println( "Air ");
-  // Air  
+  // Air
   int v = dht.read();
-  
+
   // Reading Fail Handling & First time is alway correct reading
   while ( v == 0 )
-  { 
+  {
     Serial.println( "DHT readinng fails, re-try ");
     delay ( 3000 );
-    v = dht.read(); 
+    v = dht.read();
 //    airReadErrorCnt++;
   }
   // Reading Succuess
@@ -276,9 +275,9 @@ float airRead( LDHT dht, int type ) // Pass testing
       rst = -1;
     }
   }
-  
-  airReadFirstTime = false; 
+
+  airReadFirstTime = false;
 
   return rst;
-  
+
 }
