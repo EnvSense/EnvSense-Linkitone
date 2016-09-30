@@ -14,3 +14,6 @@ In prototype and unstable
 
 ## Project Support 
 - [YuanPeiFarm,元沛農坊](https://www.facebook.com/YuanPeiFarm/?fref=ts)
+
+# Community
+[envsense gitter](https://gitter.im/envsense/Lobby#)
