@@ -22,4 +22,7 @@ In prototype and unstable
 - [OpenAgriLab,開放農業實驗室](http://open-agrilab.tk/)
 
 # Community
-[envsense gitter](https://gitter.im/envsense/Lobby#)
+- [envsense gitter](https://gitter.im/envsense/Lobby#)
+
+# Reference Project
+- [LASS](https://github.com/LinkItONEDevGroup/LASS)
